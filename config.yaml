@@ -1,0 +1,44 @@
+actions:
+  pre:
+    exec_pipenv: pipenv install && pipenv shell
+    install_yay: yay -S --needed --noconfirm --useask {0}
+    install_pip: pip install --user -r pip-packages.txt
+    install_pyenv: command -v pyenv || curl https://pyenv.run | bash
+
+config:
+  backup: false
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+  func_file:
+  - python/functions.py
+  ignoreempty: true
+  # import_actions:
+  # - tasks/actions/shared.yaml
+  import_configs:
+  - tasks/profiles/shared.yaml
+  import_variables:
+  - tasks/variables/look-and-feel.yaml
+  - tasks/variables/shared.yaml
+  # workdir: '{{@@ xdg_config("dotdrop") @@}}'
+  minversion: 0.32.0
+
+dynvariables:
+  # This variable is used in order not to hardcode the home directory where it
+  # can not be dynamically expanded
+  home: 'echo $HOME'
+
+dotfiles:
+  d_bin:
+    src: bin
+    dst: ~/.local/bin
+    link: link_children
+
+profiles:
+  all:
+    dotfiles:
+    - ALL

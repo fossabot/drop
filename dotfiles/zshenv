@@ -1,0 +1,56 @@
+#!/usr/bin/env zsh
+# vim:syntax=zsh
+# vim:filetype=zsh
+
+
+# https://github.com/sorin-ionescu/prezto/blob/master/runcoms/zshenv
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
+  echo "zenv"
+fi
+
+#
+# ─── LOAD ALL SCRIPTS ${ZSHCONFIG}/config/*.zsh ───────────────────────────────
+#
+
+# configzsh_="${ZSHCONFIG}/config"
+# if [[ -d "$zsh_config" ]]; then
+#   for f in $zsh_config/*.zsh; do
+#     source "$f"
+#   done
+#   unset f
+# fi
+# unset zsh_config
+
+# ZDOTENV="${ZDOTDIR}/zshenv.d"
+# [ -d "$ZDOTENV" ] && {
+#   for f in "$ZDOTENV"/*.zsh; do
+#     [ -f "$f" ] && echo "$f"
+#   done
+#   unset f
+# }
+# unset ZDOTENV
+
+# ─── xdg ──────────────────────────────────────────────────────────────────────
+# : ${XDG_CONFIG_HOME:="$HOME/.config"}
+# : ${XDG_CACHE_HOME:="$HOME/.cache"}
+# : ${XDG_DATA_HOME:="$HOME/.local/share"}
+# : ${XDG_RUNTIME_DIR:="/tmp/$USER"}
+# export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_RUNTIME_DIR
+
+
+# # single base directory relative to which user-specific data files should be written. This directory is defined by the environment variable
+# export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+
+# # single base directory relative to which user-specific configuration files should be written. This directory is defined by the environment variable
+# export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+# # single base directory relative to which user-specific non-essential (cached) data should be written. This directory is defined by the environment variable
+# export XDG_CACHE_HOME="${XDG_CACHE_HOME:=$HOME/.cache}"
+
+# # single base directory relative to which user-specific runtime files and other file objects should be placed. This directory is defined by the environment variable
+# export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:=/tmp/$USER}"
+
+
+export ZDOTDIR="$HOME/.config/zsh"
